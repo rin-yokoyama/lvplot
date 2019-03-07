@@ -1,0 +1,98 @@
+---
+Title: 163Eu
+
+#OutputFile: eu163_levels.png
+#OutputFile: eu163_levels.eps
+OutputFile: eu163_levels.pdf
+
+Canvas:
+  name: lvcanv
+  title: lvplot canvas
+  xsize: 1600
+  ysize: 1200
+
+PlotRange:
+  xmin: -150
+  xmax: 1000
+  ymin: -100
+  ymax: 2000
+
+Parameters:
+  width: 100
+  space: 20
+  LineColor: 1 # ROOT::TAttLine::SetLineColor()
+  LineWidth: 2 # ROOT::TAttLine::SetLineWidth()
+  TextSize: 0.02 # ROOT::TAttText::SetTextSize()
+  TextFloat: 10 # Text offset from lines
+  ArrowWidth: 1 # ROOT::TAttLine::SetLineWidth()
+  ArrowOption: "|>" # ROOT::TArrow::SetOption()
+  ArrowSize: 0.01 # ROOT::TArrow::SetArrowSize()
+  ArrowAngle: 40 # ROOT::TArrow::SetAngle()
+  GTextOffset: 2 # Text offset from gamma lines
+  Axis: # draws y-axis (optional)
+    title: Excitation energy (keV) # ROOT::TAxis::SetTitle()
+    ticks: 505 # ROOT::TAxis::SetNdivisions()
+    label_size: 0.032 # ROOT::TAxis::SetLabelSize()
+    title_size: 0.032 # ROOT::TAxis::SetTitleSize()
+    title_offset: 1.2 # ROOT::TAxis::SetTitleOffset()
+    range_min: 0 # ROOT::TAxis::SetRangeUser(min,max)
+    range_max: 1500 
+
+Bands:
+  - name: 163Eu
+    levels:
+      - level: (5/2+)
+        energy: 0
+      - level: (9/2+)
+        energy: 172
+  - name: " "
+    levels:
+      - level: (7/2+)
+        energy: 75
+      - level: (11/2+)
+        energy: 289
+  - name: " "
+    levels:
+      - level: (11/2)
+        energy: 708
+      - level: (13/2-)
+        energy: 964
+  - name: HF
+    color: 4
+    levels:
+      - level: 5/2+
+        energy: 0
+      - level: 7/2+
+        energy: 74.3
+      - level: 9/2+
+        energy: 169.7
+      - level: 11/2+
+        energy: 286.0
+      - level: 11/2+
+        energy: 1056
+      - level: 13/2-
+        energy: 1426
+
+Gamma:
+  - from: 75
+    to: 0
+    energy: 74.9 # specifies the label text
+  - from: 172
+    to: 75
+    energy: 96.2
+  - from: 289
+    to: 172
+  - from: 172
+    to: 0
+  - from: 289
+    to: 75
+  - from: 708
+    to: 172
+  - from: 964
+    to: 708
+  - from: 964
+    to: 289
+    x2: center # forces endpoint alignment
+  - from: 964
+    to: 0
+
