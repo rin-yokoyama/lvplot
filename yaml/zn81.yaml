@@ -1,0 +1,177 @@
+---
+Title: 81Zn decay
+
+OutputFile: Zn81decay_levels.pdf
+
+Canvas:
+  name: lvcanv
+  title: lvplot canvas
+  xsize: 1600
+  ysize: 1200
+
+PlotRange:
+  xmin: -300
+  xmax: 1000
+  ymin: -500
+  ymax: 7000
+
+Parameters:
+  TextOffset: 10
+  TextWidth: 60
+  TitleTextOffset: -100
+  TitleTextSize: 0.03
+  width: 15
+  space: 50
+  LineColor: 1 # ROOT::TAttLine::SetLineColor()
+  LineWidth: 1 # ROOT::TAttLine::SetLineWidth()
+  TextSize: 0.02 # ROOT::TAttText::SetTextSize()
+  TextFloat: 10 # Text offset from lines
+  TextSpace: 130 # Vertical spacing between texts
+  ArrowWidth: 1 # ROOT::TAttLine::SetLineWidth()
+  ArrowOption: "|>" # ROOT::TArrow::SetOption()
+  ArrowSize: 0.01 # ROOT::TArrow::SetArrowSize()
+  ArrowAngle: 40 # ROOT::TArrow::SetAngle()
+  GTextOffset: 2 # Text offset from gamma lines
+  #Axis: # draws y-axis (optional)
+  #  title: Excitation energy (keV) # ROOT::TAxis::SetTitle()
+  #  ticks: 505 # ROOT::TAxis::SetNdivisions()
+  #  label_size: 0.032 # ROOT::TAxis::SetLabelSize()
+  #  title_size: 0.032 # ROOT::TAxis::SetTitleSize()
+  #  title_offset: 1.2 # ROOT::TAxis::SetTitleOffset()
+  #  range_min: 0 # ROOT::TAxis::SetRangeUser(min,max)
+  #  range_max: 1500 
+
+Pages:
+  - Name: 81Zn_decay
+    Daughters:
+      - Name: 81Ga
+        Levels:
+          - level: (5/2-)
+            energy: 0
+            color: 4
+          - level: (3/2-)
+            energy: 350
+            color: 4
+          - level: (3/2-)
+            energy: 803
+            color: 4
+          - level: ''
+            energy: 1342
+          - level: ''
+            energy: 1507
+            style: 2
+          - level: ''
+            energy: 1936
+          - level: ''
+            energy: 3946
+          - level: ''
+            energy: 4295
+          - level: ''
+            energy: 4570
+            style: 2
+          - level: ''
+            energy: 4880
+            style: 2
+          - level: ''
+            energy: 5830
+            style: 2
+          - level: ''
+            energy: 6149
+            style: 2
+          - level: ''
+            energy: 6406
+            style: 2
+        Gamma:
+          - from: 6406
+            to: 0
+            energy: 6406 # specifies the label text
+          - from: 6149
+            to: 0
+            energy: 6149 # specifies the label text
+          - from: 5830
+            to: 0
+            energy: 5830 # specifies the label text
+          - from: 5830
+            to: 350
+            energy: 5481 # specifies the label text
+          - from: 4880
+            to: 0
+            energy: 4880 # specifies the label text
+          - from: 4570
+            to: 0
+            energy: 4570 # specifies the label text
+          - from: 4295
+            to: 0
+            energy: 4295 # specifies the label text
+          - from: 4295
+            to: 1342
+            energy: 2953 # specifies the label text
+          - from: 4295
+            to: 1936
+            energy: 2358.7 # specifies the label text
+          - from: 3946
+            to: 1936
+            energy: 2010.1 # specifies the label text
+          - from: 1936
+            to: 0
+            energy: 1936.1 # specifies the label text
+          - from: 1936
+            to: 350
+            energy: 1586.1 # specifies the label text
+          - from: 1507
+            to: 0
+            energy: 1506.6 # specifies the label text
+          - from: 1342
+            to: 0
+            energy: 1341.6 # specifies the label text
+          - from: 803
+            to: 0
+            energy: 802.8 # specifies the label text
+          - from: 803
+            to: 350
+            energy: 451.3 # specifies the label text
+          - from: 350
+            to: 0
+            energy: 350.4 # specifies the label text
+      - Name: 80Ga
+        Levels:
+          - level: 6(-)
+            energy: 0
+            color: 4
+          - level: (4)
+            energy: 97.20
+            color: 4
+          - level: 3(-)
+            energy: 22.45
+            color: 4
+          - level: ''
+            energy: 403.48
+            color: 4
+          - level: ''
+            energy: 707.90
+            color: 4
+          - level: ''
+            energy: 734.76
+            color: 4
+          - level: ''
+            energy: 911.39
+            color: 4
+        Gamma:
+          - from: 911.39
+            to: 22.45
+            energy: 890.1
+          - from: 911.39
+            to: 734.76
+            energy: 174.9
+          - from: 734.76
+            to: 22.45
+            energy: 712.3
+          - from: 707.90
+            to: 22.45
+            energy: 685.7
+          - from: 403.48
+            to: 0
+            energy: 403.14
+          - from: 97.20
+            to: 22.45
+            energy: 74.87

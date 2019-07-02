@@ -1,0 +1,86 @@
+---
+Title: 86Ga decay
+
+OutputFile: Ga86decay_levels.pdf
+
+Canvas:
+  name: lvcanv
+  title: lvplot canvas
+  xsize: 1600
+  ysize: 1200
+
+PlotRange:
+  xmin: -300
+  xmax: 1000
+  ymin: -100
+  ymax: 2000
+
+Parameters:
+  TextOffset: 10
+  TextWidth: 70
+  TitleTextOffset: -70
+  TitleTextSize: 0.03
+  width: 10
+  space: 100
+  LineColor: 1 # ROOT::TAttLine::SetLineColor()
+  LineWidth: 1 # ROOT::TAttLine::SetLineWidth()
+  TextSize: 0.02 # ROOT::TAttText::SetTextSize()
+  TextFloat: 10 # Text offset from lines
+  TextSpace: 50 # Vertical spacing between texts
+  ArrowWidth: 1 # ROOT::TAttLine::SetLineWidth()
+  ArrowOption: "|>" # ROOT::TArrow::SetOption()
+  ArrowSize: 0.01 # ROOT::TArrow::SetArrowSize()
+  ArrowAngle: 40 # ROOT::TArrow::SetAngle()
+  GTextOffset: 2 # Text offset from gamma lines
+  Axis: # draws y-axis (optional)
+    title: Excitation energy (keV) # ROOT::TAxis::SetTitle()
+    ticks: 505 # ROOT::TAxis::SetNdivisions()
+    label_size: 0.032 # ROOT::TAxis::SetLabelSize()
+    title_size: 0.032 # ROOT::TAxis::SetTitleSize()
+    title_offset: 1.2 # ROOT::TAxis::SetTitleOffset()
+    range_min: 0 # ROOT::TAxis::SetRangeUser(min,max)
+    range_max: 1500 
+
+Pages:
+  - Name: beta-
+    Daughters:
+      - Name: 86Ge
+        Levels:
+          - level: 0+
+            energy: 0
+          - level: (2+)
+            energy: 527
+        Gamma:
+          - from: 527
+            to: 0
+            energy: 527 # specifies the label text
+      - Name: 85Ge
+        Levels:
+          - level: ''
+            energy: 0
+          - level: ''
+            energy: 107
+          - level: ''
+            energy: 250
+          - level: ''
+            energy: 472
+        Gamma:
+          - from: 472
+            to: 107
+            #energy: 527 # specifies the label text
+          - from: 250
+            to: 0
+            #energy: 527 # specifies the label text
+          - from: 107
+            to: 0
+            #energy: 527 # specifies the label text
+      - Name: 84Ge
+        Levels:
+          - level: ''
+            energy: 0
+          - level: ''
+            energy: 624
+        Gamma:
+          - from: 624
+            to: 0
+            #energy: 527 # specifies the label text
