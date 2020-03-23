@@ -126,6 +126,10 @@ if __name__ == '__main__':
         y2 = level2.GetY1()
 
         arrows.append(TArrow(x1,y1,x2,y2))
+        arrows[-1].SetLineWidth(param['ArrowWidth'])
+        arrows[-1].SetArrowSize(param['ArrowSize'])
+        arrows[-1].SetAngle(param['ArrowAngle'])
+        arrows[-1].Draw(param['ArrowOption'])
         txt = ""
         txtx = (x1+x2)/2.0
         txty = y1+param['TextOffset']
@@ -133,6 +137,8 @@ if __name__ == '__main__':
           txt = str(g['energy'])
         else:
           txt = str(level1.GetY1()-level2.GetY1())
+        if 'intensity' in g:
+          txt = txt + ' [' + str(g['intensity']['val']) + '(' + str(g['intensity']['error']) + ')]'
         gtexts.append(TText(txtx, txty, txt))
         gtexts[-1].SetTextAlign(12)
         gtexts[-1].SetTextAngle(90)
@@ -150,17 +156,14 @@ if __name__ == '__main__':
         if 'color' in g:
           gtexts[-1].SetTextColor(g['color'])
           arrows[-1].SetLineColor(g['color'])
+        #if 'intensity' in g:
+        #  arrows[-1].SetLineWidth(int(float(g['intensity']['val'])*float(param['ArrowWidthFactor'])))
+        #  #arrows[-1].SetArrowSize(0.003)
         
       xmin = xmin + x_width + param['space']
 
     for line in alllines:
       line.Draw()
-
-    for arrow in arrows:
-      arrow.SetLineWidth(param['ArrowWidth'])
-      arrow.SetArrowSize(param['ArrowSize'])
-      arrow.SetAngle(param['ArrowAngle'])
-      arrow.Draw(param['ArrowOption'])
 
     for box in boxes:
       box.SetFillColor(0)
