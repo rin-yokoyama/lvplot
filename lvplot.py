@@ -10,15 +10,24 @@ from ROOT import TArrow
 from ROOT import TBox
 
 def FixSpacing(txts,space):
-  count = 0
+  txt_to_fix = {}
   for text1 in txts:
+    correction = 0
     for text2 in txts:
       if text1.GetX() == text2.GetX():
         diff = text1.GetY()-text2.GetY()
         if diff < space and diff > 0:
-          text1.SetY(text2.GetY()+space)
-          count = count + 1
+          if correction == 0:
+            correction = text2.GetY() + space
+          else:
+            correction = correction + space
+    txt_to_fix[text1] = correction 
   
+  count = 0
+  for txt in txt_to_fix:
+    if txt_to_fix[txt] != 0:
+      txt.SetY(txt_to_fix[txt])
+      count = count + 1
   return count
     
 if __name__ == '__main__':
@@ -54,9 +63,11 @@ if __name__ == '__main__':
     for d_i, daughter in enumerate(daughters):
       lines = []
       levels = daughter['Levels']
-      gamma = daughter['Gamma']
+      gamma = []
+      if 'Gamma' in daughter:
+        gamma = daughter['Gamma']
       ngamma = len(gamma)
-      x_width = 2.0*param['TextOffset']+2.0*param['TextSpace']+(ngamma+1)*param['width']
+      x_width = 2.0*param['TextOffset']+2.0*param['TextWidth']+(ngamma+1)*param['width']
       ttexts.append(TText(xmin+(ngamma+1)*param['width']/2.0,param['TitleTextOffset'],str(daughter['Name'])))
 
       lstyles = {}
@@ -84,7 +95,7 @@ if __name__ == '__main__':
           lstyles.update({texts[-2]:level['style']})
 
       while(FixSpacing(texts,param['TextSpace'])):
-        print 'fixing spacing'
+        print ('fixing spacing')
 
       for text in texts:
         xmax = xmin+(ngamma+1)*param['width']
@@ -102,7 +113,7 @@ if __name__ == '__main__':
       if 'Axis' in param:
         paxis = param['Axis']
         axis_margin = 0.015*(plot_range['ymax']-plot_range['ymin'])
-        axis = TGaxis(-param['space'],paxis['range_min'],-param['space'],paxis['range_max'],paxis['range_min'],paxis['range_max'],paxis['ticks'],"")
+        axis = TGaxis(-param['TextWidth']-param['space'],paxis['range_min'],-param['TextWidth']-param['space'],paxis['range_max'],paxis['range_min'],paxis['range_max'],paxis['ticks'],"")
         axis.SetTitle(paxis['title'])
         axis.SetLabelSize(paxis['label_size'])
         axis.SetTitleSize(paxis['title_size'])
@@ -118,8 +129,12 @@ if __name__ == '__main__':
         text.Draw()
 
       for i_g, g in enumerate(gamma):
-        level1 = filter(lambda x: x.GetY1() == g['from'],lines)[0]
-        level2 = filter(lambda x: x.GetY1() == g['to'],lines)[0]
+        #python2
+        #level1 = filter(lambda x: x.GetY1() == g['from'],lines)[0]
+        #level2 = filter(lambda x: x.GetY1() == g['to'],lines)[0]
+        #python3
+        level1 = next(filter(lambda x: x.GetY1() == g['from'],lines))
+        level2 = next(filter(lambda x: x.GetY1() == g['to'],lines))
         x1 = xmin + (i_g+1)*param['width']
         x2 = xmin + (i_g+1)*param['width']
         y1 = level1.GetY1()
@@ -156,6 +171,8 @@ if __name__ == '__main__':
         if 'color' in g:
           gtexts[-1].SetTextColor(g['color'])
           arrows[-1].SetLineColor(g['color'])
+        if 'style' in g:
+          arrows[-1].SetLineStyle(g['style'])
         #if 'intensity' in g:
         #  arrows[-1].SetLineWidth(int(float(g['intensity']['val'])*float(param['ArrowWidthFactor'])))
         #  #arrows[-1].SetArrowSize(0.003)
